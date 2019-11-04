@@ -9,7 +9,7 @@ version = version
 
 jar {
     manifest {
-        attributes "Main-Class": "uk.co.automatictester.simple.app.SimpleWebServer"
+        attributes 'Main-Class': 'uk.co.automatictester.simple.app.SimpleWebServer'
     }
     from {
         configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
