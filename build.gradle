@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'com.palantir.docker' version '0.22.1'
+    id 'jp.classmethod.aws.ec2' version '0.41'
+}
+
+group = 'uk.co.automatictester'
+version = version
+
+jar {
+    manifest {
+        attributes "Main-Class": "uk.co.automatictester.simple.app.SimpleWebServer"
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+dockerClean.dependsOn(jar)
+dockerPrepare.dependsOn(dockerClean)
+
+docker {
+    dependsOn dockerPrepare
+    files "build/libs/${project.name}-${project.version}.jar"
+    name "${aws.accountId}.dkr.ecr.eu-west-2.amazonaws.com/${project.name}:${project.version}".toLowerCase()
+}
+
+dependencies {
+    compile 'io.javalin:javalin:2.8.0'
+    compile 'org.slf4j:slf4j-simple:1.7.26'
+}
+
+repositories {
+    mavenCentral()
+}
