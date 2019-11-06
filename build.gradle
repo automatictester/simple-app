@@ -16,9 +16,6 @@ jar {
     }
 }
 
-dockerClean.dependsOn(jar)
-dockerPrepare.dependsOn(dockerClean)
-
 docker {
     dependsOn dockerPrepare
     files "build/libs/${project.name}-${project.version}.jar"
