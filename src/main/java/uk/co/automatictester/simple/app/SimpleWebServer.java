@@ -14,6 +14,6 @@ public class SimpleWebServer {
     private static String getRandomNumber() {
         Random rand = new Random();
         int randomNumber = rand.nextInt(8999) + 1000;
-        return String.format("haha: %d", randomNumber);
+        return String.format("haha 2: %d", randomNumber);
     }
 }
