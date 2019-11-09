@@ -23,7 +23,7 @@ jar {
 docker {
     dependsOn dockerPrepare
     files "build/libs/${project.name}-${project.version}.jar"
-    name "${aws.accountId}.dkr.ecr.eu-west-2.amazonaws.com/${project.name}:${project.version}".toLowerCase()
+    name "${aws.accountId}.dkr.ecr.eu-west-2.amazonaws.com/${project.name}:${project.version}"
 }
 
 release.git.requireBranch = 'master'
