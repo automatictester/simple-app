@@ -27,6 +27,8 @@ docker {
 }
 
 release.git.requireBranch = 'master'
+release.buildTasks = ['jar']
+release.dependsOn docekrPush
 
 dependencies {
     compile 'io.javalin:javalin:2.8.0'
