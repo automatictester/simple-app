@@ -26,7 +26,6 @@ docker {
     name "${aws.accountId}.dkr.ecr.eu-west-2.amazonaws.com/${project.name}:${project.version}".toLowerCase()
 }
 
-release.useAutomaticVersion = true
 release.git.requireBranch = 'master'
 
 dependencies {
