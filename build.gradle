@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'com.palantir.docker' version '0.22.1'
     id 'jp.classmethod.aws.ec2' version '0.41'
+    id 'net.researchgate.release' version '2.8.1'
 }
 
 group = 'uk.co.automatictester'
@@ -24,6 +25,8 @@ docker {
     files "build/libs/${project.name}-${project.version}.jar"
     name "${aws.accountId}.dkr.ecr.eu-west-2.amazonaws.com/${project.name}:${project.version}".toLowerCase()
 }
+
+release.git.requireBranch = 'master'
 
 dependencies {
     compile 'io.javalin:javalin:2.8.0'
