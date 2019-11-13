@@ -26,8 +26,16 @@ docker {
     name "${aws.accountId}.dkr.ecr.eu-west-2.amazonaws.com/${project.name}:${project.version}"
 }
 
-release.git.requireBranch = 'master'
-release.buildTasks = ['jar', 'dockerPush']
+release {
+    buildTasks = ['generateBambooArtifact', 'jar', 'dockerPush']
+    git {
+        requireBranch = 'master'
+    }
+}
+
+task generateBambooArtifact {
+    new File('version.properties').text = "version=${version}"
+}
 
 dependencies {
     compile 'io.javalin:javalin:2.8.0'
