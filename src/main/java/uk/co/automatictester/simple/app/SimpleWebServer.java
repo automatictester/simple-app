@@ -11,16 +11,19 @@ public class SimpleWebServer {
 
     public static void main(String[] args) {
         Javalin app = Javalin.create().start(8080);
-        app.get("/", ctx -> ctx.result(getRandomNumber()));
+        app.get("/", ctx -> ctx.result(getResponse()));
     }
 
-    private static String getRandomNumber() {
-        int requestId = rand.nextInt(8999) + 1000;
-        return String.format("Version:   %s\nRuntimeId: %d\nRequestId: %d",
+    private static String getResponse() {
+        return String.format("Version:   %s\nRuntimeId: %d\nRequestId: %d\n",
                 appVersion(),
                 RUNTIME_ID,
-                requestId
+                getRequestId()
         );
+    }
+
+    private static int getRequestId() {
+        return rand.nextInt(8999) + 1000;
     }
 
     private static String appVersion() {
