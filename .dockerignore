@@ -1,0 +1,8 @@
+.gradle/
+.idea/
+build/classes/
+build/resources/
+build/tmp/
+gradle/
+out/
+src/
